@@ -20,7 +20,7 @@ Uses the App Engine MapReduce mapper pipeline to read entities
 out of the App Engine Datastore, write processed entities into
 Cloud Storage in CSV format, then starts another pipeline that
 creates a BigQuery ingestion job. Uses code from the log2bq
-project: http://code.google.com/p/log2bq/ 
+project: http://code.google.com/p/log2bq/
 """
 
 
@@ -92,7 +92,7 @@ class CloudStorageToBigQuery(base_handler.PipelineBase):
     credentials = AppAssertionCredentials(scope=SCOPE)
     http = credentials.authorize(httplib2.Http())
     bigquery_service = build("bigquery", "v2", http=http)
-   
+
     jobs = bigquery_service.jobs()
     table_name = 'datastore_data_%s' % datetime.datetime.utcnow().strftime(
         '%m%d%Y_%H%M%S')
@@ -141,8 +141,8 @@ def datastore_map(entity_type):
                 data.get('store')]
   result = ','.join(['"%s"' % field for field in resultlist])
   yield("%s\n" % result)
-  
-  
+
+
 def timestamp_to_posix(timestamp):
   return int(time.mktime(timestamp.timetuple()))
 
@@ -154,7 +154,7 @@ class DatastoretoBigQueryStart(webapp.RequestHandler):
     path = pipeline.base_path + "/status?root=" + pipeline.pipeline_id
     self.redirect(path)
 
-   
+  
 class AddDataHandler(webapp.RequestHandler):
   def get(self):
     for i in range(0,9):
@@ -167,9 +167,9 @@ class AddDataHandler(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/start', DatastoretoBigQueryStart),
-                                     ('/add_data', AddDataHandler)],
-                                     debug=True)
-                                     
+                                      ('/add_data', AddDataHandler)],
+                                      debug=True)
+
 def main():
   run_wsgi_app(application)
 
