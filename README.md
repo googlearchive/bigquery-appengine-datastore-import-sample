@@ -1,3 +1,9 @@
+![status: inactive](https://img.shields.io/badge/status-inactive-red.svg)
+
+This project is no longer actively developed or maintained.
+
+For new work on this check out [python-docs-samples](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/appengine/bigquery-datastore-import).
+
 bigquery-appengine-datastore-import-sample
 ==========================================
 
